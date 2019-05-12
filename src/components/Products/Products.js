@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SingleProduct from './SingleProduct';
+import SingleProduct from '../SingleProduct/SingleProduct';
 import './Products.css';
 
 class Products extends Component {

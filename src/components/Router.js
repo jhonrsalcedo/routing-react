@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 //Destructuring 
 import {BrowserRouter, Route, Switch } from 'react-router-dom';
-import Header from './Header';
-import Nav from './Nav';
-import Products from './Products';
-import AboutUs from './AboutUs';
-import Contact from './Contact';
-import Error from './Error';
-import Linkproduct from './Linkproduct';
+import Header from './Header/Header';
+import Nav from './Nav/Nav';
+import Products from './Products/Products';
+import AboutUs from './AboutUs/AboutUs';
+import Contact from './Contact/Contact';
+import Error from './Error/Error';
+import Linkproduct from './Linkproduct/Linkproduct';
 import infoProduct from '../data/data.json';
 
 class Router extends Component {
