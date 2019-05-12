@@ -5,6 +5,7 @@ import Header from './Header';
 import Products from './Products';
 import AboutUs from './AboutUs';
 import Error from './Error';
+import Linkproduct from './Linkproduct';
 import infoProduct from '../data/data.json';
 
 class Router extends Component {
@@ -37,13 +38,22 @@ class Router extends Component {
                 />
                 <Switch>
                     {/* para pasar componentes con props utilizasmos render={()=>}*/}
-                    <Route exact path="/"  render={() =>
+                    <Route exact path="/"  render={() =>(
                         <Products
                             products={this.state.products}
                         />
-                    } />
+                        )} />
                     {/* para pasar componentes estaticos se usa compoent={} */}
                     <Route exact path="/AboutUs" component={AboutUs} />
+                    <Route exact path="/product/:productId"  render={(props) =>{
+                       let idProduct = props.location.pathname.replace('/product/', '');
+                       //console.log(idProduct)
+                       return(
+                           <Linkproduct
+                            product={this.state.products[idProduct]}
+                           />
+                       )
+                    }} />
                     <Route component={Error}/>
 
 
