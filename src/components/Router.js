@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 //Destructuring 
 import {BrowserRouter, Route, Switch } from 'react-router-dom';
+import Header from './Header';
 import Products from './Products';
 import AboutUs from './AboutUs';
 import Error from './Error';
@@ -25,11 +26,15 @@ class Router extends Component {
     render(){
         //console.log(this.state)
         return(
-            //en este componente debe estar todo lo que sean los enlaces^
-            //Swicth nos va a permitir tener varios Route o rutas
+            //en este componente debe estar todo lo que sean los enlaces
+            //Swicth nos va a permitir tener varios Route o rutas y cambiar de page
             //exact se encargara de cargar la ruta del inicio
+            //para mantener el menu sobre todas las paginas el component se debe colocar fuera de la etiqueta Switch
             <BrowserRouter>
-            
+            <div className="contenedor">
+                <Header 
+
+                />
                 <Switch>
                     {/* para pasar componentes con props utilizasmos render={()=>}*/}
                     <Route exact path="/"  render={() =>
@@ -43,7 +48,7 @@ class Router extends Component {
 
 
                 </Switch>
-            
+                </div>
             </BrowserRouter>
         )
     }

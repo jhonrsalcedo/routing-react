@@ -1,10 +1,14 @@
 import React from 'react';
 
 
-const SingleProduct = () => {
+const SingleProduct = (props) => {
+    //hacemos destructuring para llamar los datos desde data.json
+    const {imagen, nombre, precio, id}= props.infoProduct
     return ( 
         <li>
-            <h1>Desde Producto</h1>
+            <img src={`img/${imagen}.png`} alt={nombre}/>
+            <p>{nombre} <span> $ {precio} </span> </p>
+            <a href="#">Mas Info</a>
         </li>
      );
 }
