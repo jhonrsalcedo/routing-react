@@ -14,7 +14,8 @@ class Router extends Component {
     constructor(props){
         super(props);
         this.state={
-            products:[]
+            products:[],
+            finishedSearch:''
         }
     }
     
@@ -26,8 +27,41 @@ class Router extends Component {
        
     }
 
+
+    searchProduct = search =>{
+        if(search.length > 3){
+            this.setState({
+                finishedSearch: search
+            })
+
+        }else{
+            this.setState({
+                finishedSearch: ''
+            })
+        }
+
+    }
+
     render(){
         //console.log(this.state)
+        //realizamos una copia del state para mantenerlos utilizamos 
+        let products = [...this.state.products];
+
+        let search = this.state.finishedSearch;
+
+        let result;
+
+        //si la busqueda recibe un string vacio
+        if(search !== ''){
+            //console.log('no esta vacio')
+            result = products.filter(product =>(
+                product.nombre.toLowerCase().indexOf(search.toLowerCase() ) !== -1
+            ))
+        }else{
+            //console.log('si esta vacio') se mostrara todos los productos
+            result = products;
+        }
+
         return(
             //en este componente debe estar todo lo que sean los enlaces
             //Swicth nos va a permitir tener varios Route o rutas y cambiar de page
@@ -41,14 +75,16 @@ class Router extends Component {
                     {/* para pasar componentes con props utilizamos render={()=>}*/}
                     <Route exact path="/"  render={() =>(
                         <Products
-                            products={this.state.products}
+                            products={result}
+                            searchProduct ={this.searchProduct}
                         />
                         )} />
                     {/* para pasar componentes estaticos se usa compoent={} */}
                     <Route exact path="/aboutus" component={AboutUs} />
                     <Route exact path="/product" render={() =>(
                        <Products
-                       products={this.state.products}
+                       products={result}
+                       searchProduct ={this.searchProduct}
                    />
                    )}/>
                     <Route exact path="/product/:productId"  render={(props) =>{
